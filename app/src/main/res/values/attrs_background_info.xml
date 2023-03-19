@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<resources>
-    <declare-styleable name="BackgroundInfo">
-        <attr name="text" format="string" />
-        <attr name="buttonText" format="string" />
-        <attr name="maxFrame" format="integer" />
-        <attr name="buttonVisible" format="boolean" />
-    </declare-styleable>
-</resources>

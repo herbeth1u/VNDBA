@@ -1,6 +1,0 @@
-<resources>
-    <dimen name="content_horizontal_margin">96dp</dimen>
-    <dimen name="activity_horizontal_margin">96dp</dimen>
-    <dimen name="bottom_sheet_margin">250dp</dimen>
-    <dimen name="floating_bottom_sheet_margin">260dp</dimen>
-</resources>

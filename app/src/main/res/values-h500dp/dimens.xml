@@ -1,4 +1,0 @@
-<resources>
-    <dimen name="app_bar_height">250dp</dimen>
-    <dimen name="bottom_sheet_margin_top">250dp</dimen>
-</resources>
