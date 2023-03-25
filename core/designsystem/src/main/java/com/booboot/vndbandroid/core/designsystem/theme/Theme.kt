@@ -27,10 +27,12 @@ import androidx.compose.material3.dynamicLightColorScheme
 import androidx.compose.material3.lightColorScheme
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
 import com.booboot.vndbandroid.core.designsystem.component.AppBackground
+import com.google.accompanist.systemuicontroller.rememberSystemUiController
 
 /**
  * Light default theme color scheme
@@ -127,6 +129,16 @@ fun AppTheme(
         !enableDynamicTheming && supportsDynamicTheming() -> TintTheme(colorScheme.primary)
         else -> TintTheme()
     }
+
+    val systemUiController = rememberSystemUiController()
+    systemUiController.setStatusBarColor(Color.Transparent)
+    systemUiController.setNavigationBarColor(Color.Transparent)
+
+    // Update the dark content of the system bars to match the theme
+    LaunchedEffect(systemUiController, darkTheme) {
+        systemUiController.systemBarsDarkContentEnabled = !darkTheme
+    }
+
     // Composition locals
     CompositionLocalProvider(
         LocalBackgroundTheme provides defaultBackgroundTheme,

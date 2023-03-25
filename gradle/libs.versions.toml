@@ -12,6 +12,8 @@ androidxComposeBom = "2023.01.00"
 androidxComposeMaterial3 = "1.0.1"
 androidxNavigation = "2.5.3"
 
+accompanist = "0.30.0"
+
 coil = "2.2.2"
 
 [libraries]
@@ -33,6 +35,8 @@ androidx-navigation-testing = { group = "androidx.navigation", name = "navigatio
 
 androidx-compose-material3 = { group = "androidx.compose.material3", name = "material3", version.ref = "androidxComposeMaterial3" }
 androidx-compose-material3-windowSizeClass = { group = "androidx.compose.material3", name = "material3-window-size-class", version.ref = "androidxComposeMaterial3" }
+
+accompanist-systemuicontroller = { group = "com.google.accompanist", name = "accompanist-systemuicontroller", version.ref = "accompanist" }
 
 coil-kt = { group = "io.coil-kt", name = "coil", version.ref = "coil" }
 coil-kt-compose = { group = "io.coil-kt", name = "coil-compose", version.ref = "coil" }
