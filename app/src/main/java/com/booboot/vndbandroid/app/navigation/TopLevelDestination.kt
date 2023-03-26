@@ -13,20 +13,21 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-plugins {
-    id("android.library")
-    id("android.library.compose")
-}
 
-android {
-    namespace = "com.booboot.vndbandroid.core.designsystem"
-}
+package com.booboot.vndbandroid.app.navigation
 
-dependencies {
-    implementation(libs.coil.kt.compose)
-    implementation(libs.bundles.compose.base)
-    implementation(libs.androidx.compose.material3)
-    debugImplementation(libs.androidx.compose.ui.tooling)
-    implementation(libs.androidx.compose.ui.tooling.preview)
-    implementation(libs.accompanist.systemuicontroller)
+import com.booboot.vndbandroid.core.designsystem.icon.Icon
+
+/**
+ * Type for the top level destinations in the application. Each of these destinations
+ * can contain one or more screens (based on the window size). Navigation from one screen to the
+ * next within a single destination will be handled directly in composables.
+ */
+enum class TopLevelDestination(
+    val selectedIcon: Icon,
+    val unselectedIcon: Icon,
+    val iconTextId: Int,
+    val titleTextId: Int,
+) {
+    // TODO
 }

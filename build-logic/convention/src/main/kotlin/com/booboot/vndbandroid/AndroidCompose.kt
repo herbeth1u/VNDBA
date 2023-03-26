@@ -37,11 +37,12 @@ internal fun Project.configureAndroidCompose(
         }
 
         composeOptions {
-            kotlinCompilerExtensionVersion = libs.findVersion("androidxComposeCompiler").get().toString()
+            kotlinCompilerExtensionVersion =
+                libs.findVersion("androidxComposeCompiler").get().toString()
         }
 
         kotlinOptions {
-            freeCompilerArgs = freeCompilerArgs + buildComposeMetricsParameters()
+            freeCompilerArgs = freeCompilerArgs + composeOptins() + buildComposeMetricsParameters()
         }
 
         dependencies {
@@ -51,6 +52,12 @@ internal fun Project.configureAndroidCompose(
         }
     }
 }
+
+private fun composeOptins() = listOf(
+    "-opt-in=androidx.compose.material3.windowsizeclass.ExperimentalMaterial3WindowSizeClassApi",
+    "-opt-in=androidx.compose.material3.ExperimentalMaterial3Api",
+    "-opt-in=androidx.compose.foundation.layout.ExperimentalLayoutApi",
+)
 
 private fun Project.buildComposeMetricsParameters(): List<String> {
     val metricParameters = mutableListOf<String>()

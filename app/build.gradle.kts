@@ -14,4 +14,10 @@ android {
 }
 
 dependencies {
+    implementation(project(":core:designsystem"))
+
+    implementation(libs.bundles.compose.base)
+    implementation(libs.androidx.compose.material3)
+    implementation(libs.androidx.compose.material3.windowSizeClass)
+    implementation(libs.androidx.navigation.compose)
 }
