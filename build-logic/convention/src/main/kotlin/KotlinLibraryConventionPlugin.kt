@@ -13,6 +13,7 @@ class KotlinLibraryConventionPlugin : Plugin<Project> {
     override fun apply(target: Project) {
         with(target) {
             val libs = extensions.getByType<VersionCatalogsExtension>().named("libs")
+
             with(pluginManager) {
                 apply("java-library")
                 apply(libs.findPlugin("kotlin.jvm").get().get().pluginId)

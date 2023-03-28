@@ -10,8 +10,8 @@ kotlinxCoroutines = "1.6.4"
 koin = "3.3.3"
 koinKSP = "1.1.1"
 koinCompose = "3.4.2"
-
 androidDesugarJdkLibs = "2.0.2"
+gradleDependenciesSorter = "0.2"
 
 #androidxComposeCompiler = "1.4.4"
 androidxComposeCompiler = "1.4.4-dev-k1.8.20-RC-88d9f3a8232" # Version compatible with Kotlin 1.8.20-RC (see https://developer.android.com/jetpack/androidx/releases/compose-kotlin)
@@ -84,6 +84,7 @@ android-test = { id = "com.android.test", version.ref = "androidGradlePlugin" }
 kotlin-jvm = { id = "org.jetbrains.kotlin.jvm", version.ref = "kotlin" }
 kotlin-serialization = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "kotlin" }
 ksp = { id = "com.google.devtools.ksp", version.ref = "ksp" }
+gradle-dependencies-sorter = { id = "com.squareup.sort-dependencies", version.ref = "gradleDependenciesSorter" }
 
 [bundles]
 compose-base = ["androidx.compose.foundation", "androidx.compose.foundation.layout", "androidx.compose.runtime"]
