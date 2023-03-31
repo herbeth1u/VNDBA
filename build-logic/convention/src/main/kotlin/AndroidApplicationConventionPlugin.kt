@@ -20,14 +20,19 @@ import com.booboot.vndbandroid.configureAndroidApplication
 import com.booboot.vndbandroid.configureKotlinAndroid
 import org.gradle.api.Plugin
 import org.gradle.api.Project
+import org.gradle.api.artifacts.VersionCatalogsExtension
 import org.gradle.kotlin.dsl.configure
+import org.gradle.kotlin.dsl.getByType
 
 class AndroidApplicationConventionPlugin : Plugin<Project> {
     override fun apply(target: Project) {
         with(target) {
+            val libs = extensions.getByType<VersionCatalogsExtension>().named("libs")
             with(pluginManager) {
                 apply("com.android.application")
                 apply("org.jetbrains.kotlin.android")
+                // TODO move to data modules
+                apply(libs.findPlugin("kotlin.serialization").get().get().pluginId)
             }
 
             applyK2()
