@@ -47,6 +47,15 @@ internal fun Project.configureKotlinAndroid(
             targetCompatibility = JavaVersion.toVersion(libs.findVersion("java").get().toString())
             isCoreLibraryDesugaringEnabled = true
         }
+        testOptions {
+            unitTests {
+                isIncludeAndroidResources = true
+                isReturnDefaultValues = true
+            }
+        }
+        packagingOptions {
+            resources.excludes.add("META-INF/*")
+        }
 
         kotlinOptions {
             jvmTarget = libs.findVersion("java").get().toString()

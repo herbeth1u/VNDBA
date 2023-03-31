@@ -19,3 +19,5 @@ dependencyResolutionManagement {
 rootProject.name = "VNDBA"
 include(":app")
 include(":core:designsystem")
+include(":core:test:kotlin")
+include(":core:test:android")
