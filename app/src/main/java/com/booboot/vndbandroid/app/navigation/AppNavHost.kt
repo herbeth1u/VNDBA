@@ -15,7 +15,7 @@ import androidx.navigation.compose.composable
 import com.booboot.vndbandroid.app.ui.AppState
 import com.booboot.vndbandroid.core.designsystem.component.BottomSafeSpacer
 import com.booboot.vndbandroid.core.designsystem.component.TopSafeSpacer
-import com.booboot.vndbandroid.core.network.di.VndbApi
+import com.booboot.vndbandroid.core.network.vndb.di.VndbApi
 import org.koin.androidx.compose.get
 
 /**

@@ -16,7 +16,7 @@ android {
 
 dependencies {
     implementation(project(":core:designsystem"))
-    implementation(project(":core:network")) // TODO move to data module
+    implementation(project(":core:network:vndb")) // TODO move to data module
 
     implementation(libs.bundles.compose.base)
     implementation(libs.androidx.compose.material3)

@@ -3,7 +3,7 @@ plugins {
     id("koin.core")
 }
 
-group = "com.booboot.vndbandroid.core.network"
+group = "com.booboot.vndbandroid.core.network.ktor"
 
 dependencies {
     implementation(libs.ktor.core)

@@ -1,5 +1,6 @@
-package com.booboot.vndbandroid.core.network.di
+package com.booboot.vndbandroid.core.network.ktor.di
 
+import com.booboot.vndbandroid.core.network.ktor.http.CoreHttpClient
 import io.ktor.client.HttpClient
 import io.ktor.client.engine.cio.CIO
 import io.ktor.client.plugins.HttpTimeout
@@ -15,7 +16,7 @@ import org.koin.dsl.module
 
 val networkModule = module {
     single { httpClient() }
-    singleOf(::VndbApi)
+    singleOf(::CoreHttpClient)
 }
 
 private fun httpClient() = HttpClient(CIO) {
