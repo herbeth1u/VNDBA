@@ -1,6 +1,7 @@
 plugins {
     id("android.application")
     id("android.application.compose")
+    id("koin.android")
 }
 
 android {
