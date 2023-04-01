@@ -23,6 +23,7 @@ variables:
 unit_tests:
   extends: .gradle_cache
   stage: test
+  image: $ANDROID_IMAGE
   rules:
     - if: '$CI_COMMIT_BRANCH =~ /^(feature|issue)\/.*/'
   artifacts:
