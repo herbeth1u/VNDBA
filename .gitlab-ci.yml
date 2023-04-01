@@ -20,6 +20,7 @@ variables:
     paths:
       - .gradle/wrapper
       - .gradle/caches
+      - /opt/sdk
 
 unit_tests:
   extends: .gradle_cache
