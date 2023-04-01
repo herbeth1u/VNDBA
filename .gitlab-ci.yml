@@ -24,7 +24,7 @@ unit_tests:
   extends: .gradle_cache
   stage: test
   rules:
-    - if: '$CI_COMMIT_BRANCH =~ /^(feature)\/.*/'
+    - if: '$CI_COMMIT_BRANCH =~ /^(feature|issue)\/.*/'
   artifacts:
     when: always # Also uploads the report when tests fail
     reports:
