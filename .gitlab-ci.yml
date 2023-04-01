@@ -26,8 +26,6 @@ unit_tests:
   extends: .gradle_cache
   stage: test
   image: $ANDROID_IMAGE
-  rules:
-    - if: '$CI_COMMIT_BRANCH =~ /^(feature|issue)\/.*/'
   artifacts:
     when: always # Also uploads the report when tests fail
     reports:
