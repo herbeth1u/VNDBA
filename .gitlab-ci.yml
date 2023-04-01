@@ -3,7 +3,7 @@ stages:
 
 variables:
   GIT_DEPTH: 10
-  ANDROID_IMAGE: alpine-android:android-33-jdk17
+  ANDROID_IMAGE: alvrme/alpine-android:android-33-jdk17
 
 .gradle_cache:
   before_script:
