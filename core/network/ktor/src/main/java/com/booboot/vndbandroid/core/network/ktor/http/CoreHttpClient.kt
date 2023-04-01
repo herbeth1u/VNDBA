@@ -10,10 +10,26 @@ import io.ktor.http.contentType
 import io.ktor.http.encodedPath
 import io.ktor.http.takeFrom
 
+/**
+ * This class abstracts Ktor's [HttpClient] implementation from the other modules.
+ * If Ktor has to be replaced by another HTTP client, only this module should be affected.
+ *
+ * @property httpClient Ktor's [HttpClient] implementation
+ */
 class CoreHttpClient internal constructor(
     private val httpClient: HttpClient,
 ) {
 
+    /**
+     * Builds and executes an HTTP request using Ktor.
+     *
+     * @param httpMethod one of [CoreHttpMethod]
+     * @param baseUrl the base URL of the request (WITHOUT THE PATH, only scheme+host)
+     * @param urlPath the rest of the path of the URL
+     * @param query the URL queries (e.g. "?foo=bar")
+     * @param body body of the request
+     * @param headers headers of the request
+     */
     suspend fun ktorRequest(
         httpMethod: CoreHttpMethod,
         baseUrl: String,
@@ -33,6 +49,9 @@ class CoreHttpClient internal constructor(
     }.toCoreHttpResponse()
 }
 
+/**
+ * Builds a Ktor's [HttpRequestBuilder] using the input parameters.
+ */
 internal fun HttpRequestBuilder.ktorRequestConfig(
     httpMethod: CoreHttpMethod,
     baseUrl: String,

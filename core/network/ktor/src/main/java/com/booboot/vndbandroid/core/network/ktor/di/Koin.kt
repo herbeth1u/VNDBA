@@ -19,6 +19,12 @@ val networkModule = module {
     singleOf(::CoreHttpClient)
 }
 
+/**
+ * Builds a Ktor [HttpClient] with [CIO] engine (see https://ktor.io/docs/http-client-engines.html).
+ * Adds support for logging (through SLF4J) and JSON serialization (through kotlinx).
+ *
+ * @return the [HttpClient] ready to use
+ */
 private fun httpClient() = HttpClient(CIO) {
     expectSuccess = true
     install(Logging) {
