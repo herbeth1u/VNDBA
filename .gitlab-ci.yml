@@ -7,6 +7,7 @@ variables:
 
 .gradle_cache:
   before_script:
+    - chmod +x ./gradlew
     - >
       if [ $CI_SHARED_ENVIRONMENT ]; then
         export GRADLE_USER_HOME="$HOME/.gradle"
