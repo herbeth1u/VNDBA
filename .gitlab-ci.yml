@@ -10,7 +10,8 @@ variables:
     - chmod +x ./gradlew
     - >
       if [ $CI_SHARED_ENVIRONMENT ]; then
-        export GRADLE_USER_HOME="$HOME/.gradle"
+        echo "Local runner"
+        # export GRADLE_USER_HOME="$HOME/.gradle"
       else
         export GRADLE_USER_HOME="`pwd`/.gradle"
         mkdir -p $GRADLE_USER_HOME
@@ -25,6 +26,8 @@ unit_tests:
   extends: .gradle_cache
   stage: test
   image: $ANDROID_IMAGE
+  tags:
+    - ci_test
   artifacts:
     when: always # Also uploads the report when tests fail
     reports:
