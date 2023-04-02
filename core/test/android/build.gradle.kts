@@ -16,5 +16,6 @@ dependencies {
     api(libs.androidx.test.runner)
     api(libs.androidx.test.rules)
     api(libs.bundles.compose.test)
+    api(libs.robolectric)
     debugApi(libs.androidx.compose.ui.testManifest)
 }
