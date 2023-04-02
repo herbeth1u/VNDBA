@@ -7,7 +7,6 @@ variables:
 
 .gradle_cache:
   before_script:
-    - bash
     - chmod +x ./gradlew
     - >
       if [ $CI_SHARED_ENVIRONMENT ]; then
