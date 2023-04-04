@@ -1,5 +1,6 @@
 package com.booboot.vndbandroid.app
 
+import android.app.Application
 import androidx.compose.material3.windowsizeclass.WindowSizeClass
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
@@ -16,14 +17,10 @@ import com.booboot.vndbandroid.core.test.android.ComposeUnitTest
 import kotlinx.coroutines.test.runTest
 import org.junit.Test
 import org.koin.core.module.Module
+import org.robolectric.annotation.Config
 import kotlin.test.assertEquals
 
-/**
- * Tests [AppState].
- *
- * Note: This could become an unit test if Robolectric is added to the project and the Context
- * is faked.
- */
+@Config(application = Application::class)
 class AppStateTest : ComposeUnitTest() {
 
     override val modules = listOf<Module>()
@@ -32,35 +29,31 @@ class AppStateTest : ComposeUnitTest() {
     private lateinit var state: AppState
 
     @Test
-    fun niaAppState_currentDestination() = runTest(mainDispatcherRule.testDispatcher) {
-        var currentDestination: String? = null
+    fun `AppState currentDestination should update automatically`() =
+        runTest(mainDispatcherRule.testDispatcher) {
+            var currentDestination: String? = null
 
-        composeTestRule.setContent {
-            val navController = rememberTestNavController()
-            state = remember(navController) {
-                AppState(
-                    windowSizeClass = getCompactWindowClass(),
-                    navController = navController,
-                    coroutineScope = backgroundScope,
-                )
+            composeTestRule.setContent {
+                val navController = rememberTestNavController()
+                state = remember(navController) {
+                    AppState(
+                        windowSizeClass = getCompactWindowClass(),
+                        navController = navController,
+                        coroutineScope = backgroundScope,
+                    )
+                }
+
+                // Update currentDestination whenever it changes
+                currentDestination = state.currentDestination?.route
+
+                // Navigate to destination b once
+                LaunchedEffect(Unit) {
+                    navController.setCurrentDestination("b")
+                }
             }
 
-            // Update currentDestination whenever it changes
-            // TODO test failing because a bug was introduced in androidx.compose.ui:ui-test-junit4:1.4.0 :
-            //  "androidx.test.espresso.IdlingResourceTimeoutException: Wait for [Compose-Espresso link] to become idle timed out"
-            //  Wait for a fix or keep an eye here to see how Google resolves the issue:
-            //  https://github.com/android/nowinandroid/blob/main/app/src/androidTest/java/com/google/samples/apps/nowinandroid/ui/NiaAppStateTest.kt
-            currentDestination = "b"
-//            currentDestination = state.currentDestination?.route
-
-            // Navigate to destination b once
-            LaunchedEffect(Unit) {
-                navController.setCurrentDestination("b")
-            }
+            assertEquals("b", currentDestination)
         }
-
-        assertEquals("b", currentDestination)
-    }
 
     private fun getCompactWindowClass() = WindowSizeClass.calculateFromSize(DpSize(500.dp, 300.dp))
 }

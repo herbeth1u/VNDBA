@@ -1,12 +1,8 @@
 package com.booboot.vndbandroid.core.test.android
 
-import androidx.activity.ComponentActivity
-import androidx.compose.ui.test.junit4.createAndroidComposeRule
-import com.booboot.vndbandroid.core.test.kotlin.KotlinUnitTest
-import org.junit.Rule
+import org.junit.runner.RunWith
+import org.robolectric.RobolectricTestRunner
 
-abstract class AndroidUnitTest : KotlinUnitTest() {
-
-    @get:Rule
-    val composeTestRule = createAndroidComposeRule<ComponentActivity>()
+@RunWith(RobolectricTestRunner::class)
+abstract class AndroidUnitTest : AndroidInstrumentedTest() {
 }

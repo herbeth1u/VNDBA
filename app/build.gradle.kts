@@ -22,6 +22,6 @@ dependencies {
     implementation(libs.androidx.compose.material3.windowSizeClass)
     implementation(libs.androidx.navigation.compose)
 
-    androidTestImplementation(project(":core:test:android"))
+    testImplementation(project(":core:test:android"))
     debugImplementation(libs.androidx.compose.ui.testManifest)
 }
