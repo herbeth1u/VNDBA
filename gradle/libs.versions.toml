@@ -1,7 +1,7 @@
 [versions]
 kotlin = "1.8.20-RC"
 androidGradlePlugin = "7.4.2"
-java = "19"
+java = "17"
 minSdk = "26"
 targetSdk = "33"
 ksp = "1.8.20-RC-1.0.9"
@@ -30,6 +30,7 @@ androidxEspresso = "3.5.1"
 accompanist = "0.30.0"
 coil = "2.2.2"
 mockk = "1.13.3"
+robolectric = "4.9"
 
 [libraries]
 android-gradlePlugin = { group = "com.android.tools.build", name = "gradle", version.ref = "androidGradlePlugin" }
@@ -86,6 +87,7 @@ logback = { group = "ch.qos.logback", name = "logback-classic", version.ref = "l
 mockk-core = { group = "io.mockk", name = "mockk", version.ref = "mockk" }
 mockk-android = { group = "io.mockk", name = "mockk-android", version.ref = "mockk" }
 mockk-agent = { group = "io.mockk", name = "mockk-agent", version.ref = "mockk" }
+robolectric = { group = "org.robolectric", name = "robolectric", version.ref = "robolectric" }
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "androidGradlePlugin" }

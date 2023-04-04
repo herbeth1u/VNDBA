@@ -1,0 +1,30 @@
+stages:
+  - test
+
+variables:
+  GIT_DEPTH: 10
+  ANDROID_IMAGE: alvrme/alpine-android:android-33-jdk17
+
+.gradle_cache:
+  image: $ANDROID_IMAGE
+  before_script:
+    - chmod +x ./gradlew
+    - export GRADLE_USER_HOME="`pwd`/.gradle"
+    - mkdir -p $GRADLE_USER_HOME
+  cache:
+    key: $CI_JOB_NAME
+    paths:
+      - .gradle/wrapper
+      - .gradle/caches
+
+unit_tests:
+  extends: .gradle_cache
+  stage: test
+  script:
+    - ./gradlew test
+  artifacts:
+    when: always # Also uploads the report when tests fail
+    reports:
+      junit:
+        - "**/build/test-results/testDebugUnitTest/*.xml"
+        - "**/build/test-results/test/*.xml"
