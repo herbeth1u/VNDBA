@@ -16,6 +16,8 @@ dependencyResolutionManagement {
     }
 }
 
+enableFeaturePreview("TYPESAFE_PROJECT_ACCESSORS")
+
 rootProject.name = "VNDBA"
 include(":app")
 include(":core:designsystem")

@@ -6,5 +6,5 @@ plugins {
 group = "com.booboot.vndbandroid.core.network.vndb"
 
 dependencies {
-    implementation(project(":core:network:ktor"))
+    implementation(projects.core.network.ktor)
 }
