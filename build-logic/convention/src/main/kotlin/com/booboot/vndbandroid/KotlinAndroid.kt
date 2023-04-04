@@ -22,6 +22,7 @@ import org.gradle.api.Project
 import org.gradle.api.artifacts.VersionCatalogsExtension
 import org.gradle.api.plugins.ExtensionAware
 import org.gradle.kotlin.dsl.dependencies
+import org.gradle.kotlin.dsl.get
 import org.gradle.kotlin.dsl.getByType
 import org.jetbrains.kotlin.gradle.dsl.KotlinJvmOptions
 
@@ -65,8 +66,25 @@ internal fun Project.configureKotlinAndroid(
     dependencies {
         add("coreLibraryDesugaring", libs.findLibrary("android.desugarJdkLibs").get())
     }
+
+    disableTestVariant()
 }
 
 fun CommonExtension<*, *, *, *>.kotlinOptions(block: KotlinJvmOptions.() -> Unit) {
     (this as ExtensionAware).extensions.configure("kotlinOptions", block)
+}
+
+/**
+ * Disable `testReleaseUnitTest` task if `test` task is run, to avoid running duplicated test.
+ */
+internal fun Project.disableTestVariant(variant: String = "release") {
+    gradle.taskGraph.whenReady {
+        if (hasTask(tasks["test"])) {
+            tasks.all {
+                if (name.contains(variant, ignoreCase = true)) {
+                    enabled = false
+                }
+            }
+        }
+    }
 }
