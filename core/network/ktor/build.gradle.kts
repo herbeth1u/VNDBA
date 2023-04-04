@@ -13,5 +13,5 @@ dependencies {
     implementation(libs.ktor.content.negotiation)
     implementation(libs.ktor.serialization.kotlinx.json)
 
-    testImplementation(project(":core:test:kotlin"))
+    testImplementation(projects.core.test.kotlin)
 }

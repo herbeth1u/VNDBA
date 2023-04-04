@@ -15,13 +15,13 @@ android {
 }
 
 dependencies {
-    implementation(project(":core:designsystem"))
+    implementation(projects.core.designsystem)
 
     implementation(libs.bundles.compose.base)
     implementation(libs.androidx.compose.material3)
     implementation(libs.androidx.compose.material3.windowSizeClass)
     implementation(libs.androidx.navigation.compose)
 
-    testImplementation(project(":core:test:android"))
+    testImplementation(projects.core.test.android)
     debugImplementation(libs.androidx.compose.ui.testManifest)
 }

@@ -8,7 +8,7 @@ android {
 }
 
 dependencies {
-    api(project(":core:test:kotlin"))
+    api(projects.core.test.kotlin)
 
     api(libs.bundles.mockk.android.test)
     api(libs.androidx.test.junit)
