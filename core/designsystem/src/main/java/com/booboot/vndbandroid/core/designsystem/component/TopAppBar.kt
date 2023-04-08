@@ -34,7 +34,6 @@ import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.stringResource
 import com.booboot.vndbandroid.core.designsystem.icon.AppIcons
-import com.booboot.vndbandroid.core.designsystem.icon.toImageVector
 
 @Composable
 fun AppTopAppBar(

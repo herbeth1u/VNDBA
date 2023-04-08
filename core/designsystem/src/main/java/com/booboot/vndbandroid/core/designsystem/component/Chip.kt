@@ -28,7 +28,6 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import com.booboot.vndbandroid.core.designsystem.icon.AppIcons
-import com.booboot.vndbandroid.core.designsystem.icon.toImageVector
 
 /**
  * Filter chip with included leading checked icon as well as text content slot.
