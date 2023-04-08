@@ -5,7 +5,7 @@ plugins {
 }
 
 android {
-    namespace = "com.booboot.vndbandroid"
+    namespace = "com.booboot.vndbandroid.app"
 
     defaultConfig {
         applicationId = "com.booboot.vndbandroid"
@@ -21,6 +21,7 @@ dependencies {
     implementation(libs.androidx.compose.material3)
     implementation(libs.androidx.compose.material3.windowSizeClass)
     implementation(libs.androidx.navigation.compose)
+    implementation(libs.kotlinx.collections.immutable)
 
     testImplementation(projects.core.test.android)
     debugImplementation(libs.androidx.compose.ui.testManifest)

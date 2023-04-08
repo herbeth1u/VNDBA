@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="nav_bar_vn_list">VN List</string>
+    <string name="nav_bar_search">Search</string>
+    <string name="nav_bar_explore">Explore</string>
+</resources>

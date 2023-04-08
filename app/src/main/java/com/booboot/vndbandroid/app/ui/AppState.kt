@@ -30,6 +30,7 @@ import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navOptions
 import com.booboot.vndbandroid.app.navigation.TopLevelDestination
 import com.booboot.vndbandroid.app.navigation.isTopLevelDestinationInHierarchy
+import kotlinx.collections.immutable.toImmutableList
 import kotlinx.coroutines.CoroutineScope
 
 @Composable
@@ -65,12 +66,12 @@ class AppState(
      * Map of top level destinations to be used in the TopBar, BottomBar and NavRail. The key is the
      * route.
      */
-    val topLevelDestinations: List<TopLevelDestination> = TopLevelDestination.values().asList()
+    val topLevelDestinations = TopLevelDestination.values().asList().toImmutableList()
 
     /**
      * Returns true if the top level destination is the one currently selected in the nav bar.
      */
-     fun isTopLevelDestinationReselected(topLevelDestination: TopLevelDestination) =
+    fun isTopLevelDestinationReselected(topLevelDestination: TopLevelDestination) =
         currentDestination.isTopLevelDestinationInHierarchy(topLevelDestination)
 
     /**

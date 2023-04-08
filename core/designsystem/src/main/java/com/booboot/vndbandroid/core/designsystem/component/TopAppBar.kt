@@ -34,6 +34,7 @@ import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.stringResource
 import com.booboot.vndbandroid.core.designsystem.icon.AppIcons
+import com.booboot.vndbandroid.core.designsystem.icon.toImageVector
 
 @Composable
 fun AppTopAppBar(
@@ -77,9 +78,9 @@ fun AppTopAppBar(
 private fun AppTopAppBarPreview() {
     AppTopAppBar(
         titleRes = R.string.untitled,
-        navigationIcon = AppIcons.Search,
+        navigationIcon = AppIcons.Search.toImageVector(),
         navigationIconContentDescription = "Navigation icon",
-        actionIcon = AppIcons.MoreVert,
+        actionIcon = AppIcons.MoreVert.toImageVector(),
         actionIconContentDescription = "Action icon",
     )
 }
