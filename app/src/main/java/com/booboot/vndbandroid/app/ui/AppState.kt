@@ -29,7 +29,13 @@ import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navOptions
 import com.booboot.vndbandroid.app.navigation.TopLevelDestination
+import com.booboot.vndbandroid.app.navigation.TopLevelDestination.EXPLORE
+import com.booboot.vndbandroid.app.navigation.TopLevelDestination.SEARCH
+import com.booboot.vndbandroid.app.navigation.TopLevelDestination.VN_LIST
 import com.booboot.vndbandroid.app.navigation.isTopLevelDestinationInHierarchy
+import com.booboot.vndbandroid.feature.explore.navigation.navigateToExplore
+import com.booboot.vndbandroid.feature.search.navigation.navigateToSearch
+import com.booboot.vndbandroid.feature.vnlist.navigation.navigateToVnList
 import kotlinx.collections.immutable.toImmutableList
 import kotlinx.coroutines.CoroutineScope
 
@@ -74,6 +80,10 @@ class AppState(
     fun isTopLevelDestinationReselected(topLevelDestination: TopLevelDestination) =
         currentDestination.isTopLevelDestinationInHierarchy(topLevelDestination)
 
+    @Composable
+    fun isTopLevelDestinationStateReselected(topLevelDestination: TopLevelDestination) =
+        currentDestinationState.isTopLevelDestinationInHierarchy(topLevelDestination)
+
     /**
      * UI logic for navigating to a top level destination in the app. Top level destinations have
      * only one copy of the destination of the back stack, and save and restore state whenever you
@@ -100,8 +110,9 @@ class AppState(
         }
 
         when (topLevelDestination) {
-            // TODO
-            else -> {}
+            VN_LIST -> navController.navigateToVnList(topLevelNavOptions)
+            SEARCH -> navController.navigateToSearch(topLevelNavOptions)
+            EXPLORE -> navController.navigateToExplore(topLevelNavOptions)
         }
     }
 }

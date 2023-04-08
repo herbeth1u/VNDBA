@@ -1,8 +1,13 @@
 package com.booboot.vndbandroid.app.navigation
 
-import com.booboot.vndbandroid.app.R
 import com.booboot.vndbandroid.core.designsystem.icon.AppIcons
 import com.booboot.vndbandroid.core.designsystem.icon.Icon
+import com.booboot.vndbandroid.feature.explore.navigation.exploreRoute
+import com.booboot.vndbandroid.feature.search.navigation.searchRoute
+import com.booboot.vndbandroid.feature.vnlist.navigation.vnListRoute
+import com.booboot.vndbandroid.feature.explore.R as exploreR
+import com.booboot.vndbandroid.feature.search.R as searchR
+import com.booboot.vndbandroid.feature.vnlist.R as vnListR
 
 /**
  * Type for the top level destinations in the application. Each of these destinations
@@ -13,20 +18,24 @@ enum class TopLevelDestination(
     val selectedIcon: Icon,
     val unselectedIcon: Icon,
     val iconTextId: Int,
+    val route: String,
 ) {
     VN_LIST(
         selectedIcon = AppIcons.ListFilled,
         unselectedIcon = AppIcons.List,
-        iconTextId = R.string.nav_bar_vn_list, // TODO move to :feature:vnlist
+        iconTextId = vnListR.string.nav_bar_vn_list,
+        route = vnListRoute,
     ),
     SEARCH(
         selectedIcon = AppIcons.SearchFilled,
         unselectedIcon = AppIcons.Search,
-        iconTextId = R.string.nav_bar_search, // TODO move to :feature:search
+        iconTextId = searchR.string.nav_bar_search,
+        route = searchRoute,
     ),
     EXPLORE(
         selectedIcon = AppIcons.ExploreFilled,
         unselectedIcon = AppIcons.Explore,
-        iconTextId = R.string.nav_bar_explore,// TODO move to :feature:explore
+        iconTextId = exploreR.string.nav_bar_explore,
+        route = exploreRoute,
     ),
 }

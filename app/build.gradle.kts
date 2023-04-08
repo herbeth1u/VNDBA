@@ -16,6 +16,9 @@ android {
 
 dependencies {
     implementation(projects.core.designsystem)
+    implementation(projects.feature.vnlist)
+    implementation(projects.feature.search)
+    implementation(projects.feature.explore)
 
     implementation(libs.bundles.compose.base)
     implementation(libs.androidx.compose.material3)
