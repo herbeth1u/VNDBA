@@ -29,6 +29,7 @@ import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navOptions
 import com.booboot.vndbandroid.app.navigation.TopLevelDestination
+import com.booboot.vndbandroid.app.navigation.isTopLevelDestinationInHierarchy
 import kotlinx.coroutines.CoroutineScope
 
 @Composable
@@ -48,9 +49,11 @@ class AppState(
     val coroutineScope: CoroutineScope,
     val windowSizeClass: WindowSizeClass,
 ) {
-    val currentDestination: NavDestination?
-        @Composable get() = navController
-            .currentBackStackEntryAsState().value?.destination
+    val currentDestinationState: NavDestination?
+        @Composable get() = navController.currentBackStackEntryAsState().value?.destination
+
+    private val currentDestination: NavDestination?
+        get() = navController.currentBackStackEntry?.destination
 
     val shouldShowBottomBar: Boolean
         get() = windowSizeClass.widthSizeClass == WindowWidthSizeClass.Compact
@@ -65,6 +68,12 @@ class AppState(
     val topLevelDestinations: List<TopLevelDestination> = TopLevelDestination.values().asList()
 
     /**
+     * Returns true if the top level destination is the one currently selected in the nav bar.
+     */
+     fun isTopLevelDestinationReselected(topLevelDestination: TopLevelDestination) =
+        currentDestination.isTopLevelDestinationInHierarchy(topLevelDestination)
+
+    /**
      * UI logic for navigating to a top level destination in the app. Top level destinations have
      * only one copy of the destination of the back stack, and save and restore state whenever you
      * navigate to and from it.
@@ -77,12 +86,15 @@ class AppState(
             // avoid building up a large stack of destinations
             // on the back stack as users select items
             popUpTo(navController.graph.findStartDestination().id) {
-                saveState = true
+                // Save state when going back to a previously selected item
+                // When it's already the currently selected item: DON'T save state to
+                // quickly go back to the top level destination
+                saveState = isTopLevelDestinationReselected(topLevelDestination)
             }
             // Avoid multiple copies of the same destination when
             // reselecting the same item
             launchSingleTop = true
-            // Restore state when reselecting a previously selected item
+            // Restore state (only works when saveState=true)
             restoreState = true
         }
 

@@ -44,7 +44,7 @@ class AppStateTest : ComposeUnitTest() {
                 }
 
                 // Update currentDestination whenever it changes
-                currentDestination = state.currentDestination?.route
+                currentDestination = state.currentDestinationState?.route
 
                 // Navigate to destination b once
                 LaunchedEffect(Unit) {
