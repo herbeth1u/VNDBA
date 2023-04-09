@@ -27,5 +27,5 @@ fun rememberTestNavController(): TestNavHostController {
     return navController
 }
 
-val DESTINATION_FOO = "foo"
-val DESTINATION_BAR = "bar"
+internal const val DESTINATION_FOO = "foo"
+internal const val DESTINATION_BAR = "bar"
