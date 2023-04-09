@@ -7,7 +7,6 @@ import androidx.navigation.compose.NavHost
 import com.booboot.vndbandroid.app.ui.AppState
 import com.booboot.vndbandroid.feature.explore.navigation.exploreScreen
 import com.booboot.vndbandroid.feature.search.navigation.searchScreen
-import com.booboot.vndbandroid.feature.vnlist.navigation.vnListRoute
 import com.booboot.vndbandroid.feature.vnlist.navigation.vnListScreen
 
 /**
@@ -21,7 +20,7 @@ import com.booboot.vndbandroid.feature.vnlist.navigation.vnListScreen
 fun AppNavHost(
     navController: NavHostController,
     modifier: Modifier = Modifier,
-    startDestination: String = vnListRoute,
+    startDestination: String,
 ) {
     NavHost(
         navController = navController,

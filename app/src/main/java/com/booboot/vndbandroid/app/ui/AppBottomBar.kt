@@ -16,14 +16,14 @@ import kotlinx.collections.immutable.ImmutableList
 fun AppBottomBar(
     destinations: ImmutableList<TopLevelDestination>,
     onNavigateToDestination: (TopLevelDestination) -> Unit,
-    isItemSelected: @Composable (TopLevelDestination) -> Boolean,
+    currentTopLevelDestination: TopLevelDestination,
     modifier: Modifier = Modifier,
 ) {
     AppNavigationBar(
         modifier = modifier,
     ) {
         destinations.forEach { destination ->
-            val selected = isItemSelected(destination)
+            val selected = destination == currentTopLevelDestination
 
             AppNavigationBarItem(
                 selected = selected,

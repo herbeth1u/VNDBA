@@ -42,7 +42,7 @@ fun App(
                 AppBottomBar(
                     destinations = appState.topLevelDestinations,
                     onNavigateToDestination = appState::navigateToTopLevelDestination,
-                    isItemSelected = { appState.isTopLevelDestinationStateReselected(it) },
+                    currentTopLevelDestination = appState.currentTopLevelDestinationState,
                     modifier = Modifier.testTag("AppBottomBar"),
                 )
             }
@@ -63,7 +63,7 @@ fun App(
                 AppNavRail(
                     destinations = appState.topLevelDestinations,
                     onNavigateToDestination = appState::navigateToTopLevelDestination,
-                    isItemSelected = { appState.isTopLevelDestinationStateReselected(it) },
+                    currentTopLevelDestination = appState.currentTopLevelDestinationState,
                     modifier = Modifier
                         .testTag("AppNavRail")
                         .safeDrawingPadding(),
@@ -71,7 +71,10 @@ fun App(
             }
 
             Column(Modifier.fillMaxSize()) {
-                AppNavHost(appState.navController)
+                AppNavHost(
+                    navController = appState.navController,
+                    startDestination = appState.startDestination
+                )
             }
         }
     }

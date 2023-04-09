@@ -32,11 +32,12 @@ import com.booboot.vndbandroid.app.navigation.TopLevelDestination
 import com.booboot.vndbandroid.app.navigation.TopLevelDestination.EXPLORE
 import com.booboot.vndbandroid.app.navigation.TopLevelDestination.SEARCH
 import com.booboot.vndbandroid.app.navigation.TopLevelDestination.VN_LIST
-import com.booboot.vndbandroid.app.navigation.isTopLevelDestinationInHierarchy
 import com.booboot.vndbandroid.feature.explore.navigation.navigateToExplore
 import com.booboot.vndbandroid.feature.search.navigation.navigateToSearch
 import com.booboot.vndbandroid.feature.vnlist.navigation.navigateToVnList
+import com.booboot.vndbandroid.feature.vnlist.navigation.vnListRoute
 import kotlinx.collections.immutable.toImmutableList
+import kotlinx.collections.immutable.toImmutableMap
 import kotlinx.coroutines.CoroutineScope
 
 @Composable
@@ -46,21 +47,18 @@ fun rememberAppState(
     navController: NavHostController = rememberNavController(),
 ): AppState {
     return remember(navController, coroutineScope, windowSizeClass) {
-        AppState(navController, coroutineScope, windowSizeClass)
+        AppState(navController, windowSizeClass)
     }
 }
 
 @Stable
 class AppState(
     val navController: NavHostController,
-    val coroutineScope: CoroutineScope,
     val windowSizeClass: WindowSizeClass,
+    val startDestination: String = vnListRoute,
 ) {
     val currentDestinationState: NavDestination?
         @Composable get() = navController.currentBackStackEntryAsState().value?.destination
-
-    private val currentDestination: NavDestination?
-        get() = navController.currentBackStackEntry?.destination
 
     val shouldShowBottomBar: Boolean
         get() = windowSizeClass.widthSizeClass == WindowWidthSizeClass.Compact
@@ -69,20 +67,43 @@ class AppState(
         get() = !shouldShowBottomBar
 
     /**
-     * Map of top level destinations to be used in the TopBar, BottomBar and NavRail. The key is the
-     * route.
+     * Ordered list of top level destinations to be used in the BottomBar and NavRail.
      */
     val topLevelDestinations = TopLevelDestination.values().asList().toImmutableList()
 
     /**
-     * Returns true if the top level destination is the one currently selected in the nav bar.
+     * Map of top level destinations indexed on [TopLevelDestination.route].
+     * Compared to [topLevelDestinations], increases performance of [currentTopLevelDestinationState]
+     * when looping through the top level destinations to find an element.
      */
-    fun isTopLevelDestinationReselected(topLevelDestination: TopLevelDestination) =
-        currentDestination.isTopLevelDestinationInHierarchy(topLevelDestination)
+    private val topLevelDestinationsMap =
+        topLevelDestinations.associateBy { it.route }.toImmutableMap()
 
-    @Composable
-    fun isTopLevelDestinationStateReselected(topLevelDestination: TopLevelDestination) =
-        currentDestinationState.isTopLevelDestinationInHierarchy(topLevelDestination)
+    /**
+     * Current top level stack as selected in the BottomBar.
+     * This is never null (a top level destination must be selected at all time).
+     * Loops through the back stack from the most recent to the least recent screen and select the
+     * first route that matches a top level destination.
+     * N.B.: If you want to navigate to a top level destination screen without switching the current
+     * stack (i.e. without changing the selected BottomBar item), please navigate using an alternative
+     * route to the screen.
+     */
+    val currentTopLevelDestination: TopLevelDestination
+        get() = navController.backQueue.asReversed().find { navBackStackEntry ->
+            topLevelDestinationsMap[navBackStackEntry.destination.route] != null
+        }?.let {
+            topLevelDestinationsMap[it.destination.route]
+        } ?: topLevelDestinationsMap[startDestination] ?: topLevelDestinations[0]
+
+    /**
+     * Same as [currentTopLevelDestination], except it's a [Composable] state so it updates
+     * automatically and recomposes anytime the back stack changes.
+     */
+    val currentTopLevelDestinationState: TopLevelDestination
+        @Composable get() {
+            currentDestinationState // Recomposes the state when the back stack changes
+            return currentTopLevelDestination
+        }
 
     /**
      * UI logic for navigating to a top level destination in the app. Top level destinations have
@@ -100,7 +121,7 @@ class AppState(
                 // Save state when going back to a previously selected item
                 // When it's already the currently selected item: DON'T save state to
                 // quickly go back to the top level destination
-                saveState = isTopLevelDestinationReselected(topLevelDestination)
+                saveState = topLevelDestination != currentTopLevelDestination
             }
             // Avoid multiple copies of the same destination when
             // reselecting the same item

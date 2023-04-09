@@ -8,7 +8,6 @@ import com.booboot.vndbandroid.app.data.rememberTestNavController
 import com.booboot.vndbandroid.app.navigation.TopLevelDestination
 import com.booboot.vndbandroid.app.ui.AppState
 import com.booboot.vndbandroid.core.test.android.ComposeUnitTest
-import kotlinx.coroutines.test.runTest
 import org.junit.Test
 import org.koin.core.module.Module
 import org.robolectric.annotation.Config
@@ -20,32 +19,30 @@ class AppStateTest : ComposeUnitTest() {
     override val modules = listOf<Module>()
 
     // Subject under test.
-    private lateinit var state: AppState
+    private lateinit var appState: AppState
 
     @Test
-    fun `AppState currentDestination should update automatically`() =
-        runTest(mainDispatcherRule.testDispatcher) {
-            var currentDestination: String? = null
+    fun `AppState currentDestination should update automatically`() {
+        var currentDestination: String? = null
 
-            composeTestRule.setContent {
-                val navController = rememberTestNavController()
-                state = remember(navController) {
-                    AppState(
-                        windowSizeClass = getCompactWindowClass(),
-                        navController = navController,
-                        coroutineScope = backgroundScope,
-                    )
-                }
-
-                // Update currentDestination whenever it changes
-                currentDestination = state.currentDestinationState?.route
-
-                // Navigate to destination once
-                LaunchedEffect(Unit) {
-                    navController.setCurrentDestination(TopLevelDestination.SEARCH.route)
-                }
+        composeTestRule.setContent {
+            val navController = rememberTestNavController()
+            appState = remember(navController) {
+                AppState(
+                    navController = navController,
+                    windowSizeClass = getCompactWindowClass(),
+                )
             }
 
-            assertEquals(TopLevelDestination.SEARCH.route, currentDestination)
+            // Update currentDestination whenever it changes
+            currentDestination = appState.currentDestinationState?.route
+
+            // Navigate to destination once
+            LaunchedEffect(Unit) {
+                navController.setCurrentDestination(TopLevelDestination.SEARCH.route)
+            }
         }
+
+        assertEquals(TopLevelDestination.SEARCH.route, currentDestination)
+    }
 }
