@@ -3,7 +3,6 @@ package com.booboot.vndbandroid.app
 import android.view.View
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalView
-import androidx.core.graphics.toColor
 import androidx.core.view.WindowCompat
 import com.booboot.vndbandroid.core.designsystem.theme.AppTheme
 import com.booboot.vndbandroid.core.test.android.AndroidUnitTest
@@ -29,7 +28,6 @@ class AppThemeTest : AndroidUnitTest() {
         }
 
         val window = composeTestRule.activity.window
-        println(window.statusBarColor.toColor())
         assertEquals(Color.Transparent.value.toInt(), window.statusBarColor)
 
         assertNotNull(view)
@@ -49,7 +47,6 @@ class AppThemeTest : AndroidUnitTest() {
         }
 
         val window = composeTestRule.activity.window
-        println(window.statusBarColor.toColor())
         assertEquals(Color.Transparent.value.toInt(), window.statusBarColor)
 
         assertNotNull(view)

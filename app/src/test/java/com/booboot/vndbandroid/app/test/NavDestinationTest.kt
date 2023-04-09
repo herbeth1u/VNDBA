@@ -126,7 +126,6 @@ class NavDestinationTest : ComposeUnitTest() {
         assertEquals(TopLevelDestination.VN_LIST.route, navController.currentRoute)
     }
 
-    //    @Test(expected = NoActivityResumedException::class)
     @Test
     fun `start destination back quits app`() {
         composeTestRule.setContent {
