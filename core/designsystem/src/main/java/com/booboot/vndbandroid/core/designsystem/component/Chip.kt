@@ -61,7 +61,7 @@ fun AppFilterChip(
         leadingIcon = if (selected) {
             {
                 Icon(
-                    imageVector = AppIcons.Check,
+                    imageVector = AppIcons.Check.toImageVector(),
                     contentDescription = null,
                 )
             }

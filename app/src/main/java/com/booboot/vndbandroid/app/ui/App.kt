@@ -9,6 +9,7 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.only
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.safeDrawing
+import androidx.compose.foundation.layout.safeDrawingPadding
 import androidx.compose.foundation.layout.windowInsetsPadding
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
@@ -19,6 +20,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.testTag
 import com.booboot.vndbandroid.app.navigation.AppNavHost
 
 @Composable
@@ -37,7 +39,12 @@ fun App(
         snackbarHost = { SnackbarHost(snackbarHostState) },
         bottomBar = {
             if (appState.shouldShowBottomBar) {
-                // TODO bottom bar
+                AppBottomBar(
+                    destinations = appState.topLevelDestinations,
+                    onNavigateToDestination = appState::navigateToTopLevelDestination,
+                    currentTopLevelDestination = appState.currentTopLevelDestinationState,
+                    modifier = Modifier.testTag("AppBottomBar"),
+                )
             }
         }
     ) { padding ->
@@ -53,11 +60,21 @@ fun App(
                 ),
         ) {
             if (appState.shouldShowNavRail) {
-                // TODO nav rail
+                AppNavRail(
+                    destinations = appState.topLevelDestinations,
+                    onNavigateToDestination = appState::navigateToTopLevelDestination,
+                    currentTopLevelDestination = appState.currentTopLevelDestinationState,
+                    modifier = Modifier
+                        .testTag("AppNavRail")
+                        .safeDrawingPadding(),
+                )
             }
 
             Column(Modifier.fillMaxSize()) {
-                AppNavHost(appState.navController)
+                AppNavHost(
+                    navController = appState.navController,
+                    startDestination = appState.startDestination
+                )
             }
         }
     }

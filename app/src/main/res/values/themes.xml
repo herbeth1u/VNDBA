@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- Mandatory XML theme to adjust system bars when the app starts.
+    When using only Compose's SystemUiController, the status bar glitches because it turns
+    too late to the right light/dark theme, whereas the XML is able to handle it as soon as the
+    splashscreen appears. -->
+    <style name="NightAdjusted.Theme.App" parent="android:Theme.Material.Light.NoActionBar">
+        <item name="android:windowLightStatusBar">true</item>
+        <item name="android:windowLightNavigationBar">true</item>
+    </style>
+
+    <!-- The final theme we use -->
+    <style name="Theme.App" parent="NightAdjusted.Theme.App" />
+
+    <!-- Splash screen only -->
+    <style name="NightAdjusted.Theme.Splash" parent="Theme.SplashScreen">
+        <item name="android:windowLightStatusBar">true</item>
+        <item name="android:windowLightNavigationBar">true</item>
+    </style>
+
+    <style name="Theme.App.Splash" parent="NightAdjusted.Theme.Splash">
+        <item name="postSplashScreenTheme">@style/Theme.App</item>
+    </style>
+
+</resources>

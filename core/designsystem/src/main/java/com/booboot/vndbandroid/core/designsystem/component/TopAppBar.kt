@@ -77,9 +77,9 @@ fun AppTopAppBar(
 private fun AppTopAppBarPreview() {
     AppTopAppBar(
         titleRes = R.string.untitled,
-        navigationIcon = AppIcons.Search,
+        navigationIcon = AppIcons.Search.toImageVector(),
         navigationIconContentDescription = "Navigation icon",
-        actionIcon = AppIcons.MoreVert,
+        actionIcon = AppIcons.MoreVert.toImageVector(),
         actionIconContentDescription = "Action icon",
     )
 }

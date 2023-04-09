@@ -29,4 +29,7 @@ dependencies {
     debugImplementation(libs.androidx.compose.ui.tooling)
     implementation(libs.androidx.compose.ui.tooling.preview)
     implementation(libs.accompanist.systemuicontroller)
+
+    testImplementation(projects.core.test.android)
+    debugImplementation(libs.androidx.compose.ui.testManifest)
 }

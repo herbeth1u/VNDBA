@@ -131,8 +131,8 @@ fun AppTheme(
     }
 
     val systemUiController = rememberSystemUiController()
-    systemUiController.setStatusBarColor(Color.Transparent)
-    systemUiController.setNavigationBarColor(Color.Transparent)
+    systemUiController.setStatusBarColor(Color.Transparent, darkIcons = !darkTheme)
+    systemUiController.setNavigationBarColor(Color.Transparent, darkIcons = !darkTheme)
 
     // Update the dark content of the system bars to match the theme
     LaunchedEffect(systemUiController, darkTheme) {
