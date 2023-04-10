@@ -28,6 +28,7 @@ androidxTestRules = "1.5.0"
 androidxTestJunit = "1.1.5"
 androidxEspresso = "3.5.1"
 androidxSplashscreen = "1.0.0"
+androidxDatastore = "1.0.0"
 
 accompanist = "0.30.1"
 coil = "2.2.2"
@@ -52,6 +53,7 @@ androidx-test-junit = { group = "androidx.test.ext", name = "junit", version.ref
 androidx-test-espresso = { group = "androidx.test.espresso", name = "espresso-core", version.ref = "androidxEspresso" }
 androidx-navigation-testing = { group = "androidx.navigation", name = "navigation-testing", version.ref = "androidxNavigation" }
 androidx-splashscreen = { group = "androidx.core", name = "core-splashscreen", version.ref = "androidxSplashscreen" }
+androidx-datastore-preferences-core = { group = "androidx.datastore", name = "datastore-preferences-core", version.ref = "androidxDatastore" }
 
 androidx-compose-bom = { group = "androidx.compose", name = "compose-bom", version.ref = "androidxComposeBom" }
 androidx-compose-foundation = { group = "androidx.compose.foundation", name = "foundation" }
