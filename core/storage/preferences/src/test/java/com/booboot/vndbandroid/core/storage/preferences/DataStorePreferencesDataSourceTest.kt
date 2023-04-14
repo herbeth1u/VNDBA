@@ -50,6 +50,21 @@ class DataStorePreferencesDataSourceTest : KotlinUnitTest() {
             assertEquals("foo", dataSource.getString(key).first())
         }
 
+    @Test
+    fun `getting the latest value multiple times on the same flow`() =
+        runTest(mainDispatcherRule.testDispatcher) {
+            // GIVEN a value has been inserted for a specific key
+            val key = "existing_key"
+            dataSource.putString(key, "foo")
+
+            // WHEN we want to retrieve the key through a Flow
+            val flow = dataSource.getString(key)
+
+            // THEN we can call it multiple times without recreating it
+            assertEquals("foo", flow.first())
+            assertEquals("foo", flow.first())
+        }
+
     // TODO
     // Cannot write any more tests because DataStore is bugged on Windows when updating data
     // more than once:
