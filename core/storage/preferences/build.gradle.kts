@@ -7,4 +7,6 @@ group = "com.booboot.vndbandroid.core.storage.preferences"
 
 dependencies {
     implementation(libs.androidx.datastore.preferences.core)
+
+    testImplementation(projects.core.test.kotlin)
 }

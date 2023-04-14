@@ -22,7 +22,7 @@ abstract class KotlinUnitTest : KoinTest {
     /**
      * Rule to define Koin modules
      */
-    @get:Rule
+    @get:Rule(order = 1)
     val koinTestRule = KoinTestRule.create {
         modules(modules + module {
             factory<CoroutineDispatcher> { mainDispatcherRule.testDispatcher }

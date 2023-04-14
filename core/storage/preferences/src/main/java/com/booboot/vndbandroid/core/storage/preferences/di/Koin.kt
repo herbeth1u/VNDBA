@@ -19,8 +19,10 @@ val dataStoreModule = module {
         PreferenceDataStoreFactory.create(
             corruptionHandler = get()
         ) {
-            get(named("datastore_preferences_file"))
+            get(named(DATASTORE_PREFERENCES_FILE_KEY))
         }
     }
     singleOf(::DataStorePreferencesDataSource) bind PreferencesDataSource::class
 }
+
+internal const val DATASTORE_PREFERENCES_FILE_KEY = "datastore_preferences_file"
