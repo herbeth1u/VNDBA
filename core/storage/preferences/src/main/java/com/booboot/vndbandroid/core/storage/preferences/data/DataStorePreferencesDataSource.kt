@@ -11,7 +11,7 @@ import androidx.datastore.preferences.core.stringPreferencesKey
 import androidx.datastore.preferences.core.stringSetPreferencesKey
 import kotlinx.coroutines.flow.map
 
-class DataStorePreferencesDataSource(
+internal class DataStorePreferencesDataSource(
     private val dataStore: DataStore<Preferences>
 ) : PreferencesDataSource {
 
