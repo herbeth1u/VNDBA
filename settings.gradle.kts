@@ -20,11 +20,14 @@ enableFeaturePreview("TYPESAFE_PROJECT_ACCESSORS")
 
 rootProject.name = "VNDBA"
 include(":app")
+
 include(":core:designsystem")
 include(":core:network:ktor")
 include(":core:network:vndb")
+include(":core:storage:preferences")
 include(":core:test:kotlin")
 include(":core:test:android")
+
 include(":feature:vnlist")
 include(":feature:search")
 include(":feature:explore")
