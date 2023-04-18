@@ -19,27 +19,53 @@ package com.booboot.vndbandroid
 import com.android.build.api.dsl.ApplicationExtension
 import org.gradle.api.Project
 import org.gradle.api.artifacts.VersionCatalogsExtension
+import org.gradle.kotlin.dsl.apply
+import org.gradle.kotlin.dsl.extra
 import org.gradle.kotlin.dsl.getByType
+import org.gradle.kotlin.dsl.provideDelegate
 
 internal fun Project.configureAndroidApplication(
     applicationExtension: ApplicationExtension,
 ) {
+    if (file("publish.gradle.kts").exists()) {
+        apply(from = "publish.gradle.kts")
+    }
+
     val libs = extensions.getByType<VersionCatalogsExtension>().named("libs")
+    val versionCodeExtra: Int? by extra
+    val versionNameExtra: String? by extra
+    val releaseStoreFile: String? by extra
+    val releaseStorePassword: String? by extra
+    val releaseKeyAlias: String? by extra
+    val releaseKeyPassword: String? by extra
 
     applicationExtension.apply {
         defaultConfig {
+            versionCode = versionCodeExtra ?: 1
+            versionName = versionNameExtra ?: "1.0"
             targetSdk = libs.findVersion("targetSdk").get().toString().toInt()
         }
 
-        buildTypes {
-            release {
-                isMinifyEnabled = true
-                isShrinkResources = true
+        releaseStoreFile?.let { releaseStoreFile ->
+            signingConfigs {
+                create("release") {
+                    storeFile = file(releaseStoreFile)
+                    storePassword = releaseStorePassword!!
+                    keyAlias = releaseKeyAlias!!
+                    keyPassword = releaseKeyPassword!!
+                }
+            }
+            buildTypes {
+                release {
+                    isMinifyEnabled = true
+                    isShrinkResources = true
+                    signingConfig = signingConfigs.getByName("release")
 
-                proguardFiles(
-                    getDefaultProguardFile("proguard-android-optimize.txt"),
-                    "proguard-rules.pro"
-                )
+                    proguardFiles(
+                        getDefaultProguardFile("proguard-android-optimize.txt"),
+                        "proguard-rules.pro"
+                    )
+                }
             }
         }
     }
