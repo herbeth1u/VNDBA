@@ -9,8 +9,6 @@ android {
 
     defaultConfig {
         applicationId = "com.booboot.vndbandroid"
-        versionCode = 1
-        versionName = "1.0"
     }
 }
 

@@ -19,22 +19,44 @@ package com.booboot.vndbandroid
 import com.android.build.api.dsl.ApplicationExtension
 import org.gradle.api.Project
 import org.gradle.api.artifacts.VersionCatalogsExtension
+import org.gradle.kotlin.dsl.apply
+import org.gradle.kotlin.dsl.extra
 import org.gradle.kotlin.dsl.getByType
+import org.gradle.kotlin.dsl.provideDelegate
 
 internal fun Project.configureAndroidApplication(
     applicationExtension: ApplicationExtension,
 ) {
+    apply(from = "publish.gradle.kts")
+
     val libs = extensions.getByType<VersionCatalogsExtension>().named("libs")
+    val versionCodeExtra: Int by extra
+    val versionNameExtra: String by extra
+    val releaseStoreFile: String by extra
+    val releaseStorePassword: String by extra
+    val releaseKeyAlias: String by extra
+    val releaseKeyPassword: String by extra
 
     applicationExtension.apply {
         defaultConfig {
+            versionCode = versionCodeExtra
+            versionName = versionNameExtra
             targetSdk = libs.findVersion("targetSdk").get().toString().toInt()
         }
 
+        signingConfigs {
+            create("release") {
+                storeFile = file(releaseStoreFile)
+                storePassword = releaseStorePassword
+                keyAlias = releaseKeyAlias
+                keyPassword = releaseKeyPassword
+            }
+        }
         buildTypes {
             release {
                 isMinifyEnabled = true
                 isShrinkResources = true
+                signingConfig = signingConfigs.getByName("release")
 
                 proguardFiles(
                     getDefaultProguardFile("proguard-android-optimize.txt"),
