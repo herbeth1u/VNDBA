@@ -1,39 +1,37 @@
 [versions]
-kotlin = "1.8.20"
-androidGradlePlugin = "7.4.2"
 java = "17"
 minSdk = "27"
 targetSdk = "33"
-ksp = "1.8.20-1.0.10"
+kotlin = "1.8.20" # https://kotlinlang.org/docs/releases.html#release-details
+androidGradlePlugin = "8.0.0" # https://developer.android.com/build/releases/gradle-plugin
+ksp = "1.8.20-1.0.11" # https://github.com/google/ksp/releases
 
-kotlinxCoroutines = "1.6.4"
-kotlinxSerializationJson = "1.5.0"
-kotlinxCollectionsImmutable = "0.3.5"
-koin = "3.3.3"
-koinKSP = "1.1.1"
-koinCompose = "3.4.2"
-androidDesugarJdkLibs = "2.0.3"
-ktor = "2.2.4"
-logback = "1.3.6"
+kotlinxCoroutines = "1.6.4" # https://github.com/Kotlin/kotlinx.coroutines/releases
+kotlinxSerializationJson = "1.5.0" # https://github.com/Kotlin/kotlinx.serialization/releases
+kotlinxCollectionsImmutable = "0.3.5" # https://github.com/Kotlin/kotlinx.collections.immutable/releases
+koin = "3.4.0" # https://github.com/InsertKoinIO/koin/blob/main/CHANGELOG.md
+koinCompose = "3.4.3" # https://github.com/InsertKoinIO/koin/blob/main/CHANGELOG.md
+androidDesugarJdkLibs = "2.0.3" # https://github.com/google/desugar_jdk_libs/blob/master/CHANGELOG.md
+ktor = "2.2.4" # https://github.com/ktorio/ktor/releases
+logback = "1.3.6" # https://logback.qos.ch/download.html
 
-#androidxComposeCompiler = "1.4.4"
-androidxComposeCompiler = "1.4.4-dev-k1.8.20-f6ae19e64ff" # Version compatible with Kotlin 1.8.20 (see https://developer.android.com/jetpack/androidx/releases/compose-kotlin)
-androidxComposeBom = "2023.03.00"
-androidxComposeMaterial3 = "1.1.0-beta01"
+androidxComposeCompiler = "1.4.5" # https://developer.android.com/jetpack/androidx/releases/compose-compiler
+androidxComposeBom = "2023.04.00" # https://developer.android.com/jetpack/androidx/releases/compose
+androidxComposeMaterial3 = "1.1.0-beta02" # https://developer.android.com/jetpack/androidx/releases/compose-material3
 
-androidxNavigation = "2.5.3"
-androidxTestCore = "1.5.0"
-androidxTestRunner = "1.5.2"
-androidxTestRules = "1.5.0"
-androidxTestJunit = "1.1.5"
-androidxEspresso = "3.5.1"
-androidxSplashscreen = "1.0.0"
-androidxDatastore = "1.0.0"
+androidxNavigation = "2.5.3" # https://developer.android.com/jetpack/androidx/releases/navigation
+androidxTestCore = "1.5.0" # https://developer.android.com/jetpack/androidx/releases/test
+androidxTestRunner = "1.5.2" # https://developer.android.com/jetpack/androidx/releases/test
+androidxTestRules = "1.5.0" # https://developer.android.com/jetpack/androidx/releases/test
+androidxTestJunit = "1.1.5" # https://developer.android.com/jetpack/androidx/releases/test
+androidxEspresso = "3.5.1" # https://developer.android.com/jetpack/androidx/releases/test
+androidxSplashscreen = "1.0.0" # https://developer.android.com/jetpack/androidx/releases/core
+androidxDatastore = "1.0.0" # https://developer.android.com/jetpack/androidx/releases/datastore
 
-accompanist = "0.30.1"
-coil = "2.2.2"
-mockk = "1.13.3"
-robolectric = "4.9"
+accompanist = "0.30.1" # https://github.com/google/accompanist/releases
+coil = "2.3.0" # https://github.com/coil-kt/coil/blob/main/CHANGELOG.md
+mockk = "1.13.5" # https://github.com/mockk/mockk/releases
+robolectric = "4.10" # https://github.com/robolectric/robolectric/releases
 
 [libraries]
 android-gradlePlugin = { group = "com.android.tools.build", name = "gradle", version.ref = "androidGradlePlugin" }
@@ -76,10 +74,8 @@ coil-kt-compose = { group = "io.coil-kt", name = "coil-compose", version.ref = "
 coil-kt-svg = { group = "io.coil-kt", name = "coil-svg", version.ref = "coil" }
 
 koin-core = { group = "io.insert-koin", name = "koin-core", version.ref = "koin" }
-koin-annotations = { group = "io.insert-koin", name = "koin-annotations", version.ref = "koinKSP" }
 koin-android = { group = "io.insert-koin", name = "koin-android", version.ref = "koin" }
 koin-android-compose = { group = "io.insert-koin", name = "koin-androidx-compose", version.ref = "koinCompose" }
-koin-ksp-compiler = { group = "io.insert-koin", name = "koin-ksp-compiler", version.ref = "koinKSP" }
 koin-test = { group = "io.insert-koin", name = "koin-test", version.ref = "koin" }
 koin-test-junit = { group = "io.insert-koin", name = "koin-test-junit4", version.ref = "koin" }
 

@@ -54,7 +54,7 @@ internal fun Project.configureKotlinAndroid(
                 isReturnDefaultValues = true
             }
         }
-        packagingOptions {
+        packaging {
             resources.excludes.add("META-INF/*")
         }
 
