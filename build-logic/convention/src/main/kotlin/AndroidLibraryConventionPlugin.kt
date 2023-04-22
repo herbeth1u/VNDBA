@@ -39,6 +39,9 @@ class AndroidLibraryConventionPlugin : Plugin<Project> {
             extensions.configure<LibraryExtension> {
                 configureKotlinAndroid(this)
                 defaultConfig.targetSdk = libs.findVersion("targetSdk").get().toString().toInt()
+                defaultConfig {
+                    consumerProguardFiles("consumer-proguard-rules.pro")
+                }
             }
             dependencies {
                 add("androidTestImplementation", kotlin("test"))
