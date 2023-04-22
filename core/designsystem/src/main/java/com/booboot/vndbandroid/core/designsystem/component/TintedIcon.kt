@@ -1,44 +1,47 @@
-/*
- * Copyright 2023 The Android Open Source Project
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *     https://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
-
 package com.booboot.vndbandroid.core.designsystem.component
 
+import android.graphics.drawable.Drawable
+import androidx.annotation.DrawableRes
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.ColorFilter
-import androidx.compose.ui.graphics.painter.Painter
-import coil.compose.AsyncImage
+import androidx.compose.ui.graphics.DefaultAlpha
+import androidx.compose.ui.layout.ContentScale
 import com.booboot.vndbandroid.core.designsystem.theme.LocalTintTheme
+import com.booboot.vndbandroid.core.media.AppImage
 
 /**
- * A wrapper around [AsyncImage] which determines the colorFilter based on the theme
+ * A wrapper around [AppImage] which determines the colorFilter based on the theme
  */
 @Composable
 fun TintedIcon(
-    modifier: Modifier = Modifier,
     data: Any?,
-    contentDescription: String? = null,
-    placeholder: Painter? = null,
+    modifier: Modifier = Modifier,
+    crossfade: Boolean = true,
+    zoomable: Boolean = false,
+    @DrawableRes placeholder: Int? = null,
+    @DrawableRes error: Int? = null,
+    contentScale: ContentScale = ContentScale.Fit,
+    errorContentScale: ContentScale = contentScale,
+    placeholderContentScale: ContentScale = contentScale,
+    alpha: Float = DefaultAlpha,
+    onSuccess: (Drawable) -> Unit = {},
+    onError: (Throwable) -> Unit = {}
 ) {
     val iconTint = LocalTintTheme.current.iconTint
-    AsyncImage(
-        placeholder = placeholder,
-        model = data,
-        contentDescription = contentDescription,
-        colorFilter = if (iconTint != null) ColorFilter.tint(iconTint) else null,
+
+    AppImage(
+        data = data,
         modifier = modifier,
+        crossfade = crossfade,
+        zoomable = zoomable,
+        placeholder = placeholder,
+        error = error,
+        contentScale = contentScale,
+        errorContentScale = errorContentScale,
+        placeholderContentScale = placeholderContentScale,
+        alpha = alpha,
+        tint = iconTint,
+        onSuccess = onSuccess,
+        onError = onError,
     )
 }
