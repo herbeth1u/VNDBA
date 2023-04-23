@@ -10,6 +10,7 @@ android {
 dependencies {
     implementation(libs.coil)
     implementation(libs.zoomable)
+    implementation(libs.lottie)
 
     implementation(libs.bundles.compose.base)
     debugImplementation(libs.androidx.compose.ui.tooling)

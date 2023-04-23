@@ -1,5 +1,3 @@
-@file:Suppress("unused")
-
 package com.booboot.vndbandroid.core.media
 
 import android.graphics.drawable.Drawable

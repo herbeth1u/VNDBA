@@ -17,6 +17,7 @@
 package com.booboot.vndbandroid.core.designsystem.icon
 
 import androidx.annotation.DrawableRes
+import androidx.annotation.RawRes
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.MoreVert
 import androidx.compose.material.icons.filled.Search
@@ -59,5 +60,14 @@ sealed class Icon {
     data class DrawableResourceIcon(@DrawableRes private val id: Int) : Icon() {
         @Composable
         override fun toImageVector() = ImageVector.vectorResource(id = id)
+    }
+
+    data class AnimationResourceIcon(@RawRes val id: Int) : Icon() {
+        @Composable
+        override fun toImageVector() =
+            throw IllegalArgumentException(
+                """AnimationResourceIcon cannot be converted to
+                |ImageVector. Use id instead.""".trimMargin()
+            )
     }
 }

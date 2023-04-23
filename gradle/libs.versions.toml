@@ -31,6 +31,8 @@ androidxDatastore = "1.0.0" # https://developer.android.com/jetpack/androidx/rel
 accompanist = "0.30.1" # https://github.com/google/accompanist/releases
 coil = "2.3.0" # https://github.com/coil-kt/coil/blob/main/CHANGELOG.md
 zoomable = "1.4.2" # https://github.com/usuiat/Zoomable/releases
+lottie = "6.0.0" # https://github.com/airbnb/lottie-android/releases
+
 mockk = "1.13.5" # https://github.com/mockk/mockk/releases
 robolectric = "4.10" # https://github.com/robolectric/robolectric/releases
 
@@ -74,6 +76,7 @@ coil = { group = "io.coil-kt", name = "coil-compose", version.ref = "coil" }
 coil-gif = { group = "io.coil-kt", name = "coil-gif", version.ref = "coil" }
 coil-svg = { group = "io.coil-kt", name = "coil-svg", version.ref = "coil" }
 zoomable = { group = "net.engawapg.lib", name = "zoomable", version.ref = "zoomable" }
+lottie = { group = "com.airbnb.android", name = "lottie-compose", version.ref = "lottie" }
 
 koin-core = { group = "io.insert-koin", name = "koin-core", version.ref = "koin" }
 koin-android = { group = "io.insert-koin", name = "koin-android", version.ref = "koin" }
