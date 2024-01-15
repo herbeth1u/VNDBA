@@ -23,7 +23,8 @@ android {
 }
 
 dependencies {
-    implementation(libs.coil.kt.compose)
+    implementation(projects.core.media)
+
     implementation(libs.bundles.compose.base)
     implementation(libs.androidx.compose.material3)
     debugImplementation(libs.androidx.compose.ui.tooling)

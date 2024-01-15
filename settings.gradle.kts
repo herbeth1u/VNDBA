@@ -27,6 +27,7 @@ include(":core:network:vndb")
 include(":core:storage:preferences")
 include(":core:test:kotlin")
 include(":core:test:android")
+include(":core:media")
 
 include(":feature:vnlist")
 include(":feature:search")

@@ -108,12 +108,12 @@ val DarkDefaultColorScheme = darkColorScheme(
 @Composable
 fun AppTheme(
     darkTheme: Boolean = isSystemInDarkTheme(),
-    enableDynamicTheming: Boolean = false,
+    enableDynamicTheming: Boolean = true,
     content: @Composable () -> Unit,
 ) {
     // Color scheme
     val colorScheme = when {
-        !enableDynamicTheming && supportsDynamicTheming() -> {
+        enableDynamicTheming && supportsDynamicTheming() -> {
             val context = LocalContext.current
             if (darkTheme) dynamicDarkColorScheme(context) else dynamicLightColorScheme(context)
         }
@@ -126,7 +126,7 @@ fun AppTheme(
         tonalElevation = 2.dp,
     )
     val tintTheme = when {
-        !enableDynamicTheming && supportsDynamicTheming() -> TintTheme(colorScheme.primary)
+        enableDynamicTheming && supportsDynamicTheming() -> TintTheme(colorScheme.primary)
         else -> TintTheme()
     }
 
