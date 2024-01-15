@@ -24,7 +24,7 @@ import com.airbnb.lottie.compose.rememberLottieComposition
  * @param maxProgress maximum progress to which the animation should play. Between 0 and 1. Frames higher than this value will never play.
  */
 @Composable
-fun AnimatedImage(
+fun AppAnimatedImage(
     @RawRes resourceId: Int,
     modifier: Modifier = Modifier,
     repeatForever: Boolean = true,
